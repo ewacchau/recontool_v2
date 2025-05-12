@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>Start Scan</h1>
+<form method="post">
+  {{ form.hidden_tag() }}
+  <div class="mb-3">
+    {{ form.domain.label(class_="form-label") }}
+    {{ form.domain(class_="form-control") }}
+  </div>
+  <div class="mb-3">
+    {{ form.target.label(class_="form-label") }}
+    {{ form.target(class_="form-control") }}
+  </div>
+  <button type="submit" class="btn btn-primary">Start Scan</button>
+</form>
+{% endblock %}

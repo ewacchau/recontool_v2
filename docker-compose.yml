@@ -1,0 +1,27 @@
+version: "3.9"
+services:
+  web:
+    build: .
+    env_file: .env
+    command: flask --app manage.py run --host 0.0.0.0
+    ports: ["5000:5000"]
+    depends_on: [redis, db]
+    volumes: [.:/code]
+  worker:
+    build: .
+    env_file: .env
+    command: celery -A app.extensions.celery worker --loglevel=info
+    depends_on: [redis, db]
+    volumes: [.:/code]
+  redis:
+    image: redis:7-alpine
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: recon
+      POSTGRES_USER: recon
+      POSTGRES_PASSWORD: reconpass
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+volumes:
+  dbdata:

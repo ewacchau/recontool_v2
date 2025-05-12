@@ -1,0 +1,6 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>Scan Results</h1>
+<pre>{{ scan.result | tojson(indent=2) }}</pre>
+<a href="{{ url_for('scans.index') }}" class="btn btn-secondary">Back</a>
+{% endblock %}

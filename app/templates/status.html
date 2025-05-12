@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>Scan Status</h1>
+<p>Status: <strong>{{ scan.status }}</strong></p>
+{% if scan.status == 'finished' %}
+<a href="{{ url_for('scans.results', scan_id=scan.id) }}" class="btn btn-success">View Results</a>
+{% else %}
+<p>This page refreshes every 5 seconds.</p>
+<meta http-equiv="refresh" content="5">
+{% endif %}
+{% endblock %}
