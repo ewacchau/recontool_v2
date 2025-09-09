@@ -1,6 +1,5 @@
 from datetime import datetime
 from .extensions import db
-from sqlalchemy.dialects.postgresql import JSONB
 
 class ScanRun(db.Model):
     __tablename__ = "scan_runs"
@@ -10,4 +9,4 @@ class ScanRun(db.Model):
     status      = db.Column(db.String(32), default="pending")
     created_at  = db.Column(db.DateTime, default=datetime.utcnow)
     finished_at = db.Column(db.DateTime)
-    result      = db.Column(JSONB)
+    result      = db.Column(db.JSON)
